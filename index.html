@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Verification</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #1e293b;
+      padding: 2.5rem;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 440px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+    .denied { color: #ef4444; }
+    .granted { color: #22c55e; }
+  </style>
+</head>
+<body>
+  <div id="status" class="card">
+    <p>Verifying system environment and network authorization...</p>
+  </div>
+
+  <script>
+    (async function () {
+      const ALLOWED_IP = "203.0.113.195"; // Replace with target school public IPv4 address
+
+      // Check 1: Chromebook Operating System Check
+      const isChromebook = /CrOS/.test(navigator.userAgent);
+      if (!isChromebook) {
+        document.body.innerHTML = `
+          <div class="card">
+            <h1 class="denied">Access Rejected</h1>
+            <p><strong>Reason:</strong> Invalid OS. Access is restricted exclusively to Chrome OS devices.</p>
+          </div>`;
+        return;
+      }
+
+      // Check 2: Public IPv4 Network Check using ipify API (no API key required)
+      try {
+        const response = await fetch("https://api.ipify.org?format=json");
+        const data = await response.json();
+        const userIp = data.ip;
+
+        if (userIp !== ALLOWED_IP) {
+          document.body.innerHTML = `
+            <div class="card">
+              <h1 class="denied">Access Rejected</h1>
+              <p><strong>Reason:</strong> Unauthorized IP address (${userIp}). Device must be on the target network.</p>
+            </div>`;
+          return;
+        }
+
+        // Access Granted View
+        document.body.innerHTML = `
+          <div class="card">
+            <h1 class="granted">Access Granted</h1>
+            <p>Welcome. System environment and network connection verified.</p>
+          </div>`;
+
+      } catch (error) {
+        document.body.innerHTML = `
+          <div class="card">
+            <h1 class="denied">Access Rejected</h1>
+            <p><strong>Reason:</strong> Unable to verify network public IP.</p>
+          </div>`;
+      }
+    })();
+  </script>
+</body>
+</html>
