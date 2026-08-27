@@ -47,15 +47,13 @@
       const isChromebook = /CrOS/.test(navigator.userAgent);
       if (!isChromebook) {
         renderPage(
-          /* --- FAIL 1: OS REJECTED CSS --- */
+         /* --- FAIL 1: OS REJECTED CSS --- */
 `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
-
   body {
-    background: url("https://t4.ftcdn.net/jpg/02/43/23/77/360_F_243237730_rA3o8krDwrWFWGthv5ffnp17cqKaxwZe.jpg") no-repeat center center fixed;
+    background: #0f172a url("https://t4.ftcdn.net/jpg/02/43/23/77/360_F_243237730_rA3o8krDwrWFWGthv5ffnp17cqKaxwZe.jpg") no-repeat center center fixed;
     background-size: cover;
     color: #f8fafc;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     font-weight: 300;
     display: flex;
     justify-content: center;
@@ -67,7 +65,7 @@
   }
 
   .glass-card {
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 255, 255, 0.18);
