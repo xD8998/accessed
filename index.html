@@ -86,14 +86,30 @@
       box-sizing: border-box;
     }
 
-    /* Portrait: card gets more room to breathe */
+    /* Portrait: card is significantly larger, everything inside scales up */
     @media (orientation: portrait) {
       .glass-card {
-        width: min(94vw, 460px);
-        padding: clamp(2rem, 8vw, 3rem) clamp(1.5rem, 6vw, 2.25rem);
+        width: min(96vw, 600px);
+        padding: clamp(2.5rem, 10vw, 4rem) clamp(1.75rem, 8vw, 3rem);
       }
       .device-img {
-        width: min(75vw, 280px);
+        width: min(85vw, 380px);
+      }
+      .denied {
+        font-size: clamp(2rem, 9vw, 2.75rem);
+      }
+      .reason {
+        font-size: clamp(1.2rem, 5.5vw, 1.5rem);
+      }
+      .clarify {
+        font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+      }
+      .url-display {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+        padding: 1.1rem;
+      }
+      .arrow {
+        font-size: 2.25rem;
       }
     }
 
