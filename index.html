@@ -86,52 +86,6 @@
       box-sizing: border-box;
     }
 
-    /* Portrait: massive vertical growth + everything inside scaled way up */
-    @media (orientation: portrait) {
-      .glass-card {
-        width: min(92vw, 480px);
-        padding: clamp(4rem, 16vw, 6rem) clamp(2rem, 8vw, 3rem);
-      }
-      .device-img {
-        width: min(90vw, 420px);
-        margin-top: 1.5rem;
-      }
-      .denied {
-        font-size: clamp(2.5rem, 11vw, 3.5rem);
-        margin-bottom: 1rem;
-      }
-      .reason {
-        font-size: clamp(1.5rem, 7vw, 2rem);
-        margin-bottom: 2rem;
-      }
-      .clarify {
-        font-size: clamp(1.25rem, 5.5vw, 1.6rem);
-        margin-bottom: 1.5rem;
-      }
-      .url-display {
-        font-size: clamp(1.3rem, 6vw, 1.7rem);
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-      }
-      .arrow-container {
-        margin: 1.5rem 0;
-      }
-      .arrow {
-        font-size: 3rem;
-      }
-    }
-
-    /* Landscape: tone it down so it doesn't dominate the shorter viewport height */
-    @media (orientation: landscape) {
-      .glass-card {
-        width: min(60vw, 420px);
-        padding: clamp(1rem, 4vh, 1.75rem) clamp(1rem, 3vw, 1.5rem);
-      }
-      .device-img {
-        width: min(30vw, 160px);
-      }
-    }
-
     .denied {
       color: #f87171;
       font-weight: 400;
@@ -232,6 +186,58 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
+    }
+
+    /* ============================================================
+       ORIENTATION OVERRIDES — placed LAST so they win the cascade
+       against the base rules above (equal specificity, so source
+       order decides; this must stay at the end of the stylesheet).
+       ============================================================ */
+
+    /* Portrait: EXTREME size increase, no caps, pure viewport-based scaling */
+    @media (orientation: portrait) {
+      .glass-card {
+        width: 95vw !important;
+        padding: 18vw 8vw !important;
+      }
+      .device-img {
+        width: 90vw !important;
+        margin-top: 2rem !important;
+      }
+      .denied {
+        font-size: 14vw !important;
+        margin-bottom: 1.5rem !important;
+      }
+      .reason {
+        font-size: 8vw !important;
+        margin-bottom: 2.5rem !important;
+      }
+      .clarify {
+        font-size: 6vw !important;
+        margin-bottom: 2rem !important;
+      }
+      .url-display {
+        font-size: 7vw !important;
+        padding: 2rem !important;
+        margin: 2rem 0 !important;
+      }
+      .arrow-container {
+        margin: 2rem 0 !important;
+      }
+      .arrow {
+        font-size: 5rem !important;
+      }
+    }
+
+    /* Landscape: tone it down so it doesn't dominate the shorter viewport height */
+    @media (orientation: landscape) {
+      .glass-card {
+        width: min(60vw, 420px) !important;
+        padding: clamp(1rem, 4vh, 1.75rem) clamp(1rem, 3vw, 1.5rem) !important;
+      }
+      .device-img {
+        width: min(30vw, 160px) !important;
+      }
     }
   </style>
 </head>
