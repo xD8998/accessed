@@ -53,17 +53,126 @@
             .card { background: #1e293b; padding: 2.5rem; border-radius: 12px; text-align: center; }
             .denied { color: #ef4444; }
           `,
-          /* --- FAIL 1: OS REJECTED HTML --- */
-          `
-            <div class="card">
-              <h1 class="denied">Access Rejected</h1>
-              <p>Reason: Chrome OS required.</p>
-            </div>
-          `,
-          /* --- FAIL 1: OS REJECTED JS --- */
-          function () {
-            // Optional JS for OS failure view
-          }
+          /* --- FAIL 1: OS REJECTED CSS --- */
+`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
+
+  body {
+    background: url("https://t4.ftcdn.net/jpg/02/43/23/77/360_F_243237730_rA3o8krDwrWFWGthv5ffnp17cqKaxwZe.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .glass-card {
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+  }
+
+  .denied {
+    color: #f87171;
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: -0.5px;
+  }
+
+  .reason {
+    font-size: 1.05rem;
+    color: #e2e8f0;
+    font-weight: 300;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .clarify {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .url-display {
+    font-family: monospace;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #38bdf8;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.85rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    word-break: break-all;
+    margin: 0.75rem 0 0.5rem 0;
+  }
+
+  .arrow-container {
+    margin: 0.5rem 0;
+    animation: bounce 2s infinite;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    color: #38bdf8;
+    display: inline-block;
+  }
+
+  .device-img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 0.25rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+    60% { transform: translateY(-3px); }
+  }
+`,
+
+/* --- FAIL 1: OS REJECTED HTML --- */
+`
+  <div class="glass-card">
+    <h1 class="denied">Access Rejected</h1>
+    <p class="reason">Reason: Chrome OS required.</p>
+    
+    <p class="clarify">If you scanned this from a phone, please open a <strong>Chromebook</strong> and navigate to this URL:</p>
+    
+    <div id="target-url" class="url-display">Fetching URL...</div>
+    
+    <div class="arrow-container">
+      <span class="arrow">↓</span>
+    </div>
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7g8T70YNj6SQQmuxpLIBlxiXmOAkt9XIMRmOqX1-WFP7ADMEFfur0fws&s=10" alt="Chromebook Required" class="device-img" />
+  </div>
+`,
+
+/* --- FAIL 1: OS REJECTED JS --- */
+function () {
+  const urlBox = document.getElementById("target-url");
+  if (urlBox) {
+    urlBox.textContent = window.location.href;
+  }
+}
         );
         return;
       }
