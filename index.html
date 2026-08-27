@@ -86,6 +86,28 @@
       box-sizing: border-box;
     }
 
+    /* Portrait: card gets more room to breathe */
+    @media (orientation: portrait) {
+      .glass-card {
+        width: min(94vw, 460px);
+        padding: clamp(2rem, 8vw, 3rem) clamp(1.5rem, 6vw, 2.25rem);
+      }
+      .device-img {
+        width: min(75vw, 280px);
+      }
+    }
+
+    /* Landscape: tone it down so it doesn't dominate the shorter viewport height */
+    @media (orientation: landscape) {
+      .glass-card {
+        width: min(60vw, 420px);
+        padding: clamp(1rem, 4vh, 1.75rem) clamp(1rem, 3vw, 1.5rem);
+      }
+      .device-img {
+        width: min(30vw, 160px);
+      }
+    }
+
     .denied {
       color: #f87171;
       font-weight: 400;
