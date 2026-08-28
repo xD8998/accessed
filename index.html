@@ -239,12 +239,31 @@
         padding-top: 4vh !important;
       }
       .glass-card {
-        width: min(80vw, 560px) !important;
-        padding: clamp(0.75rem, 3vh, 1.25rem) clamp(1.25rem, 4vw, 2rem) !important;
+        width: min(85vw, 640px) !important;
+        padding: clamp(1rem, 3.5vh, 1.5rem) clamp(1.5rem, 4vw, 2.25rem) !important;
+        display: grid !important;
+        grid-template-columns: 1fr minmax(110px, 22vw) !important;
+        grid-template-areas:
+          "heading image"
+          "reason  image"
+          "clarify image"
+          "url     image"
+          "arrow   image" !important;
+        align-items: center !important;
+        column-gap: 1.5rem !important;
+        text-align: left !important;
       }
+      .denied { grid-area: heading !important; }
+      .reason { grid-area: reason !important; }
+      .clarify { grid-area: clarify !important; }
+      .url-display { grid-area: url !important; }
+      .arrow-container { grid-area: arrow !important; }
       .device-img {
-        width: min(20vw, 130px) !important;
-        margin-top: 0.5rem !important;
+        grid-area: image !important;
+        width: 100% !important;
+        height: auto !important;
+        align-self: center !important;
+        margin-top: 0 !important;
       }
       .denied {
         font-size: clamp(1.1rem, 4vh, 1.4rem) !important;
@@ -268,9 +287,10 @@
       }
       .arrow-container {
         margin: 0.25rem 0 !important;
+        transform: rotate(-90deg) !important;
       }
       .arrow {
-        font-size: 1.25rem !important;
+        font-size: 1.5rem !important;
       }
     }
   </style>
